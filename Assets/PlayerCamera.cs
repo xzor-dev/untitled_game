@@ -47,10 +47,25 @@ public class PlayerCamera : MonoBehaviour
 			this.gameObject.GetComponent<Rigidbody>().freezeRotation = true;
 	}
 
-	/**
-     * Camera logic on LateUpdate to only update after all character movement logic has been handled.
-     */
-	void LateUpdate ()
+    // Make mouse cursor lock and disapear on right click button hold
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+    }
+
+/**
+ * Camera logic on LateUpdate to only update after all character movement logic has been handled.
+ */
+void LateUpdate ()
 	{
 		Vector3 vTargetOffset;
 
